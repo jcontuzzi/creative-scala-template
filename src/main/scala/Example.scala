@@ -1,8 +1,4 @@
-import doodle.core._
 import doodle.core.Image._
-import doodle.syntax._
-import doodle.jvm.Java2DCanvas._
-import doodle.backend.StandardInterpreter._
 
 // To use this example, open the SBT console and type:
 //
@@ -10,3 +6,5 @@ import doodle.backend.StandardInterpreter._
 object Example {
   val image = circle(10) on circle(20) on circle(30)
 }
+
+object Chapter3Exercises

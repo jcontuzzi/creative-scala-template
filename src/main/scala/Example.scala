@@ -7,4 +7,6 @@ object Example {
   val image = circle(10) on circle(20) on circle(30)
 }
 
-object Chapter3Exercises
+object Chapter3Exercises {
+
+}

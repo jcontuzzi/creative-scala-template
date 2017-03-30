@@ -1,0 +1,23 @@
+Chapter 2 Exercises
+50 + 2 - 10
+"Joe" ++ " C"
+"Joe".++(" C")
+Yes, it appears that the same rules apply
+
+Compiles; type Int
+Compiles; type Int
+Compiles; type String
+Does not compile
+Compiles; type Int
+Compiles; type Int
+Compiles; type Int; will fail at run-time (1/0)
+
+Chapter 3 Exercises
+circle(1)
+circle(10)
+circle(100)
+add ".draw" to the end of each to draw them
+
+All are type Image
+
+The type is Unit; it only has one value, (), which isn't something that has particular utility 

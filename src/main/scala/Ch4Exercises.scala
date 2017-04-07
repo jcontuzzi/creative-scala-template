@@ -12,19 +12,19 @@ object ArcheryAgain {
  }
 
 object StreetsAhead {
-  val roof = triangle(30,15).fillColor(Color.fireBrick).lineColor(Color.fireBrick)
-  val houseBody = rectangle(30,25).fillColor(Color.red).lineColor(Color.red)
-  val door = rectangle(6,18).fillColor(Color.black).below(rectangle(6,7).fillColor(Color.red).lineColor(Color.red))
+  val roof = triangle(30,15).fillColor(Color.fireBrick)
+  val houseBody = rectangle(30,25).fillColor(Color.red)
+  val door = rectangle(6,18).fillColor(Color.black).below(rectangle(6,7).fillColor(Color.red))
   val house = door.on(houseBody).below(roof)
 
-  val treeTop = circle(15).fillColor(Color.green).lineColor(Color.green)
-  val treeTrunk = rectangle(6,12).fillColor(Color.brown).lineColor(Color.brown)
+  val treeTop = circle(15).fillColor(Color.green)
+  val treeTrunk = rectangle(6,12).fillColor(Color.brown)
   val tree = treeTop.above(treeTrunk)
 
-  val roadStripe = rectangle(20,3).fillColor(Color.yellow).lineColor(Color.yellow).beside(rectangle(5,3).fillColor(Color.black))
+  val roadStripe = rectangle(20,3).fillColor(Color.yellow).beside(rectangle(5,3).fillColor(Color.black))
   val roadSurface = rectangle(25,9).fillColor(Color.black)
   val roadPiece = roadStripe.above(roadSurface)
 
   val houseTreeAndRoad = house.beside(tree).above(roadPiece.beside(roadPiece).beside(roadPiece))
-  val finalImage = houseTreeAndRoad.beside(houseTreeAndRoad).beside(houseTreeAndRoad)
+  val finalImage = houseTreeAndRoad.beside(houseTreeAndRoad).beside(houseTreeAndRoad).lineWidth(0.0)
 }

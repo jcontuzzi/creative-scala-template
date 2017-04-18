@@ -18,8 +18,32 @@ object Week3Exercises {
 
   }
 
+
   def square(i: Int): Int = i * i
 
+
   def halve(d: Double): Double = d / 2.0
+
+
+  val aBox = Image.rectangle(40, 20).fillColor(Color.orange)
+
+  def boxes(count: Int): Image =
+    count match {
+      case 0 => Image.empty
+      case n => aBox beside boxes(n - 1)
+    }
+
+
+  def stackedBoxes(count: Int): Image =
+    count match {
+      case 0 => Image.empty
+      case n => aBox above stackedBoxes(n - 1)
+    }
+
+
+  def noMatch(i: Int): Int =
+    i match {
+      case 1 => 3
+    }
 
 }

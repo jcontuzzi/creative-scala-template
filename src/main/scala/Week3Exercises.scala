@@ -99,14 +99,23 @@ object Week3Exercises {
 
 
   def anotherChessboard(count: Int): Image = {
-    val redSquare = Image.rectangle(10, 10).fillColor(Color.red)
-    val blackSquare = Image.rectangle(10, 10).fillColor(Color.black)
-    val mainBlock = (redSquare beside blackSquare) above (blackSquare beside redSquare)
+    val redSquare = {
+      println("Creating Red Square")
+      Image.rectangle(10, 10).fillColor(Color.red)
+    }
+    val blackSquare = {
+      println("Creating Black Square")
+      Image.rectangle(10, 10).fillColor(Color.black)
+    }
+    val mainBlock = {
+      println("Creating Base")
+      (redSquare beside blackSquare) above (blackSquare beside redSquare)
+    }
 
     def loop(count: Int): Image = {
       count match {
         case 0 => mainBlock
-        case n => (anotherChessboard(n - 1) beside anotherChessboard(n - 1)) above (anotherChessboard(n - 1) beside anotherChessboard(n - 1))
+        case n => (loop(n - 1) beside loop(n - 1)) above (loop(n - 1) beside loop(n - 1))
       }
     }
 
@@ -123,7 +132,7 @@ object Week3Exercises {
     def loop(count: Int): Image = {
       count match {
         case 0 => Image.empty
-        case n => aBox beside boxesRedux(n - 1)
+        case n => aBox beside loop(n - 1)
       }
     }
 

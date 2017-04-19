@@ -76,5 +76,6 @@ object Week3Exercises {
 
   }
 
+  def test = 1
 
 }

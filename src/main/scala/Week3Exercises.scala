@@ -66,7 +66,7 @@ object Week3Exercises {
 
 
   def equilateralTriangle(sideLength: Double): Image =
-    Image.triangle(sideLength, math.sqrt(square(sideLength) - square(halve(sideLength)))).lineColor(Color.darkGoldenrod)
+    Image.triangle(sideLength, math.sqrt(square(sideLength) - square(halve(sideLength))))
 
   def sierpinski(count: Int): Image = {
     count match {

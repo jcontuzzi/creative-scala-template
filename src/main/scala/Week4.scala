@@ -23,7 +23,14 @@ object Week4 {
       case n => singleShape(n) on concentricShapes(n - 1, singleShape)
     }
 
-  def coloredSizedShape(shape: Image, size: Int, spin: Double): Image =
-    shape((50 + 5 * size).lineColor(Color.purple.spin((10 * (1 + spin)).degrees)).lineWidth(3.0)
+
+
+  def sizedHuedCircle(size: Int, spin: Double): Image =
+    Image.circle(50 + 5 * size).lineColor(Color.purple.spin((10 * (1 + spin)).degrees)).lineWidth(3.0)
+
+  def sizedLightenedTriangle(size: Int): Image =
+    Week3Exercises.equilateralTriangle(size.toDouble).lineColor(Color.purple.alpha((0.0 + 5 * size).normalized))
+
+  def test = concentricShapes(10, (sizedLightenedTriangle _)(10))
 
 }

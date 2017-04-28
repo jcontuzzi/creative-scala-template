@@ -24,13 +24,27 @@ object Week4 {
     }
 
 
+  def coloredCircle(n: Int) = {
+    val shape = Image.circle(50 + 10 * n)
+    val color = Color.purple.spin((30 * n).degrees)
 
-  def sizedHuedCircle(size: Int, spin: Double): Image =
-    Image.circle(50 + 5 * size).lineColor(Color.purple.spin((10 * (1 + spin)).degrees)).lineWidth(3.0)
+    shape.lineColor(color).lineWidth(10)
+  }
 
-  def sizedLightenedTriangle(size: Int): Image =
-    Week3Exercises.equilateralTriangle(size.toDouble).lineColor(Color.purple.alpha((0.0 + 5 * size).normalized))
+  def shadedTriangle(n: Int) = {
+    val shape = Week3Exercises.equilateralTriangle(100 + 20 * n)
+    val color = Color.darkBlue.alpha((0.1 * n).normalized)
 
-  def test = concentricShapes(10, (sizedLightenedTriangle _)(10))
+    shape.lineColor(color).lineWidth(10)
+  }
+
+  def coloredSquare(n: Int) = {
+    val shape = Image.rectangle(100 + 20 * n, 100 + 20 * n)
+    val color = Color.purple.spin((30 * n).degrees)
+
+    shape.lineColor(color).lineWidth(10)
+  }
+
+  val finalShape = concentricShapes(10, coloredCircle) beside concentricShapes(10, shadedTriangle) beside concentricShapes(10, coloredSquare)
 
 }

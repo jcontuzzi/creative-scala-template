@@ -45,6 +45,37 @@ object Week4 {
     shape.lineColor(color).lineWidth(10)
   }
 
+  //Hi Noel -- I was a bit confused as to why you didn't have to convert things like coloredCircle or shadedTriangle to functions before passing them into concentricShapes.  Will bring this up in class.
+
   val finalShape = concentricShapes(10, coloredCircle) beside concentricShapes(10, shadedTriangle) beside concentricShapes(10, coloredSquare)
+
+
+  //Waving the white flag on this -- seem to be struggling with it.
+
+  val baseSize = 50
+
+  def stem(size: Int, color: Color) = Image.rectangle(size, 2 * size).fillColor(color)
+
+  def center(size: Int, color: Color) = Image.circle(size).lineColor(color).lineWidth(baseSize / 10)
+
+  def petalDot(angle: Angle): Point = Point.cartesian((angle * 7).cos * angle.cos, (angle * 7).cos * angle.sin)
+
+  //Leveraging code from section 8.5
+  def petals(start: Angle, numDots: Int, location: Angle => Point): Image = {
+    val step = Angle.one / numDots
+    val dot = triangle(100, 100).lineColor(Color.blue)
+
+    def loop(count: Int): Image = {
+      val angle = step * count
+      count match {
+        case 0 => Image.empty
+        case n => dot.at(location(angle).toVec) on loop(n - 1)
+      }
+    }
+
+    loop(numDots)
+  }
+
+  val flower = (center(baseSize, Color.yellow) on petals(0.degrees, 100, petalDot)) above stem(baseSize, Color.green)
 
 }

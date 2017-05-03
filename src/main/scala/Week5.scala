@@ -84,4 +84,14 @@ object Week5 {
     //I take it this isn't quite what you had in mind for the stretch exercise?  :-)
     def reverse[A](list: List[A]): List [A] = list.reverse
 
+
+    def polygonPath(radius: Double, numSides: Int, startingAngle: Angle): List[PathElement] =
+      numSides match {
+        case 0 => List(moveTo(polar(radius, startingAngle)))
+        case numSides => polygonPath(radius, numSides - 1, startingAngle) :+ lineTo(polar(radius, startingAngle + 360.degrees))
+      }
+
+
+    val polygon: Image = style(closedPath(polygonPath(100, 3, 45.degrees)))
+
 }

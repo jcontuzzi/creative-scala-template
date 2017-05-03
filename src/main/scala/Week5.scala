@@ -88,10 +88,22 @@ object Week5 {
     def polygonPath(radius: Double, numSides: Int, startingAngle: Angle): List[PathElement] =
       numSides match {
         case 0 => List(moveTo(polar(radius, startingAngle)))
-        case numSides => polygonPath(radius, numSides - 1, startingAngle) :+ lineTo(polar(radius, startingAngle + 360.degrees))
+        case numSides => polygonPath(radius, numSides - 1, startingAngle) :+ LineTo(polar(radius, startingAngle + 360.degrees / numSides))
       }
 
+    def polygon(numSides: Int, radius: Double, startingAngle: Angle): Image = {
+      def polygonPath(count: Int, angle: Angle): List[PathElement] =
+        count match {
+          case 0 => List(moveTo(polar(radius, startingAngle)))
+          case count => polygonPath(count - 1, angle) :+ LineTo(polar(radius, startingAngle + angle * count))
+        }
 
-    val polygon: Image = style(closedPath(polygonPath(100, 3, 45.degrees)))
+      closedPath(polygonPath(numSides, 360.degrees / numSides))
+    }
 
+    def drawShapes(n: Int, radius: Double, startingAngle: Angle): Image =
+      n match {
+        case 0 => Image.empty
+        case n => polygon(n, radius + 20 * (n - 1), startingAngle * n) on drawShapes(n - 1, radius, startingAngle * (n - 1))
+      }
 }

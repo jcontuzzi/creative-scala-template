@@ -81,25 +81,4 @@ object Week4 {
 
   val flower = (center(baseSize, Color.yellow) on petals(0.degrees, 100, petalDot)) above stem(baseSize, Color.green)
 
-
-  val circle: Double => (Angle => Point) = (frequency: Double) => (a: Angle) => Point.polar(1.0, frequency * a)
-  val scale = (r: Double) => (pt: Point) => Point(pt.x * r, pt.y * r)
-
-  val curve: Angle => Point = (circle(1) andThen scale(100)) |+| (circle(6) andThen scale(50)) |+| (circle(-14) andThen scale(33))
-
-  val sample(start: Angle, numDots: Int, location: Angle => Point): Image = {
-    val step = Angle.one / numDots
-    val dot = triangle(100, 100).lineColor(Color.blue)
-
-    def loop(count: Int): Image = {
-      val angle = step * count
-      count match {
-        case 0 => Image.empty
-        case n => dot.at(location(angle).toVec) on loop(n - 1)
-      }
-    }
-
-    loop(numDots)
-  }
-
 }

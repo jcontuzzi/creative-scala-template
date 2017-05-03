@@ -39,10 +39,49 @@ object Week5 {
         case n => 1 :: ones(n - 1)
       }
 
-
+    // Hi Noel, I noticed that I get a stack overflow when trying to pass in a negative number here; not terribly surprising, but I wondered if there was a way to control the allowable inputs to just be positive integers?
     def descending(n: Int): List[Int] =
       n match {
         case 0 => Nil
         case n => n :: descending(n - 1)
       }
+
+
+    def ascending(n: Int): List[Int] =
+      n match {
+        case 0 => Nil
+        case n => ascending(n - 1) :+ n
+      }
+
+
+    def fill[A](n: Int, a: A): List[A] =
+      n match {
+        case 0 => Nil
+        case n => a :: fill(n - 1, a)
+      }
+
+
+    def double(list: List[Int]): List[Int] = list.map(x => 2 * x)
+
+
+    def product(list: List[Int]): Int =
+      list match {
+        case Nil => 1
+        case hd :: tl => hd * product(tl)
+      }
+
+
+    def contains[A](list: List[A], a: A): Boolean = list.contains(a)
+
+
+    def first[A](list: List[A], a: A): A =
+      list match {
+        case Nil => a
+        case hd :: tl => hd
+      }
+
+
+    //I take it this isn't quite what you had in mind for the stretch exercise?  :-)
+    def reverse[A](list: List[A]): List [A] = list.reverse
+
 }

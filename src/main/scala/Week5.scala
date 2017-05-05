@@ -144,8 +144,12 @@ object Week5 {
       case hd :: tl => hd above allAbove(tl)
     }
 
+  //Was trying something on my own here; eventually needed some help from the answer key to get to "neatImage" below
+  def listOfStars(p: Int, n:Int, radius: Double): List[Image] = (1 to n).map(n => star(p, n, radius)).toList
 
-  def listOfStars(p: Int, n:Int, radius: Double): List[Image] = (3 to p).map(p => star(p, n, radius)).toList
+  def neatImage(p: Int, radius: Double): Image = {
+    allAbove((3 to p by 2).toList.map{p => allBeside((1 to p/2).toList.map{x => star(p, x, radius)})})
+  }
 
 
 

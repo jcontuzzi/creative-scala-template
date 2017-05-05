@@ -106,4 +106,47 @@ object Week5 {
         case 0 => Image.empty
         case n => polygon(n, radius + 20 * (n - 1), startingAngle * n) on drawShapes(n - 1, radius, startingAngle * (n - 1))
       }
+
+  //Can I do ".toList" at the end instead?  It looks like I can -- is that because there's a map method on range as well?
+  def ones2(n: Int): List[Int] = (0 until n).toList.map(x => 1)
+
+  def descending2(n: Int): List[Int] = (n until 0 by -1).toList
+
+  def ascending2(n: Int): List[Int] = (0 until n).toList.map(x => x + 1)
+
+  def double2(list: List[Int]): List[Int] = list.map(x => 2 * x)
+
+  def polygon2(sides: Int, radius: Double, startingAngle: Angle): Image = {
+    val initialPoint = moveTo(polar(radius, startingAngle))
+    val pointRotation = 360.0 / sides
+    val linePath = (0.0 to 360.0 by pointRotation).toList.map { x => lineTo(polar(radius, startingAngle + x.degrees)) }
+    closedPath(initialPoint :: linePath)
+  }
+
+    def ascending3(n: Int): List[Int] = (1 to n).toList
+
+    def star(p: Int, n:Int, radius: Double): Image = {
+      val pointRotation = 360.0 / p
+      val linePath = (0.0 to 360.0 by pointRotation).toList.map{x => lineTo(polar(radius, (n * x).degrees))}
+      closedPath(moveTo(polar(radius, 0.degrees)) :: linePath)
+    }
+
+
+  def allBeside(images: List[Image]): Image =
+    images match {
+      case Nil => Image.empty
+      case hd :: tl => hd beside allBeside(tl)
+    }
+
+  def allAbove(images: List[Image]): Image =
+    images match {
+      case Nil => Image.empty
+      case hd :: tl => hd above allAbove(tl)
+    }
+
+
+  def listOfStars(p: Int, n:Int, radius: Double): List[Image] = (3 to p).map(p => star(p, n, radius)).toList
+
+
+
 }
